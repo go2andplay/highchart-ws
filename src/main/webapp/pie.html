@@ -10,21 +10,7 @@
 	<script src="resources/js/highcharts.js"></script>
 
 
-
-	<div>
-		<h2>Please select year to see the results</h2>
-	</div>
-	<div>
-		<select id="userinput" onchange="start()">
-			<option value="2">Please select year</option>
-			<option value="0">2010</option>
-			<option value="1">2008</option>
-			<option value="2">2006</option>
-			<option value="3">2004</option>
-			<option value="4">2002</option>
-		</select>
-	</div>
-
+	<h2>Dashboard</h2>
 
 	<div id="container" style="width: 600px; height: 450px;"></div>
 
@@ -63,8 +49,8 @@
 						},
 						series : [ {
 							name : 'Operating Systems',
-							data : [ [ 'Windows', 88.19 ], [ 'MacOSX', 9.22 ],
-									[ 'Linux', 1.58 ], [ 'Others', 1.01 ] ]
+							data : [ [ 'SML', 88.19 ], [ 'TML', 9.22 ],
+									[ 'FML', 1.58 ], [ 'Others', 1.01 ] ]
 						} ]
 					});
 		}
@@ -79,8 +65,8 @@
 		}
 
 		function start() {
-			var text = document.getElementById("userinput").value;
-			webSocket.send(text);
+			//var text = document.getElementById("userinput").value;
+			webSocket.send("1");
 			return false;
 		}
 	</script>
