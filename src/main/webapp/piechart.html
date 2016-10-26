@@ -11,10 +11,12 @@
 
 
 
-	<div><h2>Please select year to see the results </h2></div>
+	<div>
+		<h2>Please select year to see the results</h2>
+	</div>
 	<div>
 		<select id="userinput" onchange="start()">
-			<option value="4">Please select year</option>
+			<option value="2">Please select year</option>
 			<option value="0">2010</option>
 			<option value="1">2008</option>
 			<option value="2">2006</option>
@@ -22,15 +24,14 @@
 			<option value="4">2002</option>
 		</select>
 	</div>
-	
+
 
 	<div id="container" style="width: 600px; height: 450px;"></div>
 
 
 	<script type="text/javascript">
-
 		var webSocket = new WebSocket(
-				'ws://localhost:8084/highchart-ws/websocket');
+				'ws://localhost:8084/highchart-ws/piechart');
 
 		webSocket.onerror = function(event) {
 			onError(event)
@@ -45,38 +46,27 @@
 		};
 
 		function onMessage(event) {
+
 			$('#container').highcharts(
 					{
-						credits: {
-						      enabled: false
-						  },
 						chart : {
-							type : 'column'
+							type : 'pie'
 						},
 						title : {
-							text : 'Olympics  Medal Table'
+							text : 'Desktop Operating Systems Marketshare'
 						},
 						subtitle : {
-							text : 'gives column chart to depict medals'
+							text : 'StatCounter'
 						},
-						xAxis : {
-							title : {
-								text : 'Countries'
-							},
-							categories : [ 'United States', 'China',
-									'Russian Federation', 'Great Britain',
-									'South Korea' ]
-						},
-						yAxis : {
-							title : {
-								text : 'Number of total medals'
-							}
+						tooltip : {
+							valueSuffix : '%'
 						},
 						series : [ {
-							name : 'Medals',
-							data :JSON.parse(event.data)
+							name : 'Operating Systems',
+							data : [ [ 'Windows', 88.19 ], [ 'MacOSX', 9.22 ],
+									[ 'Linux', 1.58 ], [ 'Others', 1.01 ] ]
 						} ]
-					})
+					});
 		}
 
 		function onOpen(event) {
